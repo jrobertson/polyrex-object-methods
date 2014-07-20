@@ -20,7 +20,7 @@ class PolyrexObjectMethods
       siblings = x[/[^\{]+(?=\})/]
 
       if siblings then
-        siblings.split(/\s*;\s*/).each {|s| r << to_array.call(s) }
+        siblings.split(/\s*;\s*/).inject(r) {|r2, s| r2 << to_array.call(s)}
       else
         r << to_array.call(x)
       end
